@@ -1,4 +1,5 @@
-import 'package:clean_architecture_sample/feature/data/post_model.dart';
+
+import 'package:clean_architecture_sample/features/post/data/model/post_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 

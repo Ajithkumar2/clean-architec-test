@@ -11,12 +11,15 @@ Future<void> configureDependencies() async {
   // Initialize SQL Database
   final database = await openDatabase(
     join(await getDatabasesPath(), 'posts_database.db'),
-    onCreate: (db, version) {
-      return db.execute("CREATE TABLE posts(id INTEGER PRIMARY KEY, title TEXT, body TEXT)");
+    onCreate: (db, version) async {
+      await db.execute("CREATE TABLE posts(id INTEGER PRIMARY KEY, title TEXT, body TEXT)");
+      await db.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, email TEXT)");
     },
     version: 1,
   );
 
   locator.registerSingleton<Database>(database);
+  // locator.registerSingleton<PostRepositoryImpl>(PostRepositoryImpl(PostRemoteDatasourceImpl()));
+  // locator.registerSingleton<PostLocalDataSource>(PostLocalDataSource(database));
   locator.init(); // This calls the generated code
 }

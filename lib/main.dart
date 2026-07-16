@@ -1,8 +1,9 @@
 import 'package:clean_architecture_sample/core/dio_client.dart';
-import 'package:clean_architecture_sample/feature/presentation/post_bloc.dart';
 import 'package:clean_architecture_sample/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/post/presentation/post_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,22 +20,36 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: BlocProvider(
         create: (_) => locator<PostBloc>()..add(Object()), // Trigger fetch
-        child: Scaffold(
-          appBar: AppBar(title: const Text('Clean Architecture Posts')),
-          body: BlocBuilder<PostBloc, PostState>(
-            builder: (context, state) {
-              if (state is PostLoading) return const Center(child: CircularProgressIndicator());
-              if (state is PostLoaded) {
-                return ListView.builder(
-                  itemCount: state.posts.length,
-                  itemBuilder: (context, i) => ListTile(
-                    title: Text(state.posts[i].title),
-                    subtitle: Text(state.posts[i].body),
-                  ),
-                );
-              }
-              return const Center(child: Text("Pull to refresh"));
-            },
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(title: const Text('Clean Architecture Posts')),
+            body: BlocBuilder<PostBloc, PostState>(
+              builder: (context, state) {
+                if (state is PostLoading) return const Center(child: CircularProgressIndicator());
+                if (state is PostLoaded) {
+                  return TabBarView(
+                    children: [
+                      ListView.builder(
+                        itemCount: state.posts.length,
+                        itemBuilder: (context, i) => ListTile(
+                          title: Text(state.posts[i].title),
+                          subtitle: Text(state.posts[i].body),
+                        ),
+                      ),
+                      ListView.builder(
+                        itemCount: state.users.length,
+                        itemBuilder: (context, i) => ListTile(
+                          title: Text(state.users[i].name),
+                          subtitle: Text(state.users[i].email),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return const Center(child: Text("Pull to refresh"));
+              },
+            ),
           ),
         ),
       ),
