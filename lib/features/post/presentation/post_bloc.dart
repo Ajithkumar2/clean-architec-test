@@ -11,6 +11,7 @@ import '../domain/usecase/post_use_case.dart';
 abstract class PostState {}
 class PostInitial extends PostState {}
 class PostLoading extends PostState {}
+class PostErrorState extends PostState {}
 class PostLoaded extends PostState {
   final List<Post> posts;
   final List<User> users;
@@ -28,7 +29,11 @@ class PostBloc extends Bloc<dynamic, PostState> {
       emit(PostLoading());
       final posts = await getPostsUseCase.call();
       final users = await userUseCase.call();
-      emit(PostLoaded(posts, users));
+      users.fold((failure) {
+        emit(PostErrorState());
+      }, (users){
+        emit(PostLoaded(posts, users));
+      });
     });
   }
 }

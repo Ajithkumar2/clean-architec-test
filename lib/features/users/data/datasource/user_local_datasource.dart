@@ -1,6 +1,9 @@
+import 'package:clean_architecture_sample/core/failures.dart';
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../domain/entities/user_entity.dart';
 import '../model/user_model.dart';
 
 @lazySingleton
@@ -14,8 +17,8 @@ class UserLocalDatasource {
     }
   }
 
-  Future<List<UserModel>> getUsers() async {
+  Future<Either<Failure, List<User>>> getUsers() async {
     final maps = await db.query('users');
-    return maps.map((e) => UserModel.fromJson(e)).toList();
+    return Right(maps.map((e) => UserModel.fromJson(e)).toList());
   }
 }

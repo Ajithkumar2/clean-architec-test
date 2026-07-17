@@ -1,13 +1,16 @@
 
+import 'package:clean_architecture_sample/core/failures.dart';
 import 'package:clean_architecture_sample/features/users/domain/repository/user_repository.dart';
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/model/user_model.dart';
+import '../entities/user_entity.dart';
+
 
 @lazySingleton
 class UserUseCase {
   final UserRepository userRepository;
    UserUseCase(this.userRepository);
 
-   Future<List<UserModel>> call () async => userRepository.getUsers();
+   Future<Either<Failure, List<User>>> call () async => userRepository.getUsers();
 }
