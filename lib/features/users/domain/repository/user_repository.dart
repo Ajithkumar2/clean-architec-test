@@ -1,6 +1,9 @@
 
-import '../../data/model/user_model.dart';
+import 'package:clean_architecture_sample/core/failures.dart';
+import 'package:dartz/dartz.dart';
+
+import '../entities/user_entity.dart';
 
 abstract class UserRepository {
-  Future<List<UserModel>> getUsers();
+  Future<Either<Failure, List<User>>> getUsers();
 }

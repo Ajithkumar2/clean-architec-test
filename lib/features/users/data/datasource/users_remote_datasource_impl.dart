@@ -1,3 +1,5 @@
+import 'package:clean_architecture_sample/core/failures.dart';
+import 'package:clean_architecture_sample/core/network_exceptions.dart';
 import 'package:clean_architecture_sample/features/users/data/datasource/user_local_datasource.dart';
 import 'package:clean_architecture_sample/features/users/data/model/user_model.dart';
 import 'package:dio/dio.dart';
@@ -24,8 +26,10 @@ class UsersRemoteDatasourceImpl extends UsersRemoteDatasource {
         final posts = (res.data as List).map((e) => UserModel.fromJson(e)).toList();
       await locator<UserLocalDatasource>().cacheUsers(posts);
     return posts;
-    } catch (e) {
-    return await locator<UserLocalDatasource>().getUsers();
+    } on DioException {
+      throw NetworkException();
+    } catch (_) {
+      throw ServerException();
     }
   }
 
