@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "577110800760",
+    "project_id": "matrix-6371e",
+    "storage_bucket": "matrix-6371e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577110800760:android:569399451e648ab493f08d",
+        "android_client_info": {
+          "package_name": "com.example.clean_architecture_sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577110800760-cj5o2go47r6sa2p4dus88q8uijlf6i4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHGH2s8nYZt37NtLoypD7kRKvcYVGVs64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577110800760-cj5o2go47r6sa2p4dus88q8uijlf6i4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577110800760:android:99b7f1ec828e0e0493f08d",
+        "android_client_info": {
+          "package_name": "com.example.restaurant_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577110800760-cj5o2go47r6sa2p4dus88q8uijlf6i4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHGH2s8nYZt37NtLoypD7kRKvcYVGVs64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577110800760-cj5o2go47r6sa2p4dus88q8uijlf6i4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

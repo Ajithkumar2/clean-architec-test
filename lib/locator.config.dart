@@ -50,34 +50,34 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio);
     gh.lazySingleton<_i692.DioClient>(() => _i692.DioClient());
-    gh.lazySingleton<_i601.PostLocalDataSource>(
-      () => _i601.PostLocalDataSource(gh<_i779.Database>()),
-    );
-    gh.lazySingleton<_i327.UserLocalDatasource>(
-      () => _i327.UserLocalDatasource(gh<_i779.Database>()),
-    );
     gh.lazySingleton<_i383.PostRemoteDatasource>(
       () => _i383.PostRemoteDatasourceImpl(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i914.UsersRemoteDatasource>(
       () => _i914.UsersRemoteDatasourceImpl(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i947.PostRepository>(
-      () => _i45.PostRepositoryImpl(gh<_i383.PostRemoteDatasource>()),
-    );
-    gh.lazySingleton<_i826.GetPostsUseCase>(
-      () => _i826.GetPostsUseCase(gh<_i947.PostRepository>()),
-    );
     gh.lazySingleton<_i653.UserRepository>(
       () => _i789.UserRepoImpl(gh<_i914.UsersRemoteDatasource>()),
     );
-    gh.factory<_i250.PostBloc>(
-      () => _i250.PostBloc(gh<_i826.GetPostsUseCase>()),
+    gh.lazySingleton<_i601.PostLocalDataSource>(
+      () => _i601.PostLocalDataSource(gh<_i779.Database>()),
+    );
+    gh.lazySingleton<_i327.UserLocalDatasource>(
+      () => _i327.UserLocalDatasource(gh<_i779.Database>()),
+    );
+    gh.lazySingleton<_i947.PostRepository>(
+      () => _i45.PostRepositoryImpl(gh<_i383.PostRemoteDatasource>()),
     );
     gh.lazySingleton<_i381.UserUseCase>(
       () => _i381.UserUseCase(gh<_i653.UserRepository>()),
     );
+    gh.lazySingleton<_i826.GetPostsUseCase>(
+      () => _i826.GetPostsUseCase(gh<_i947.PostRepository>()),
+    );
     gh.factory<_i494.UserBloc>(() => _i494.UserBloc(gh<_i381.UserUseCase>()));
+    gh.factory<_i250.PostBloc>(
+      () => _i250.PostBloc(gh<_i826.GetPostsUseCase>()),
+    );
     return this;
   }
 }
