@@ -17,6 +17,9 @@ dependencies:
   connectivity_plus: ^5.0.0
   path: ^1.8.3
   pretty_dio_logger: ^1.4.0
+  dartz: ^0.10.1
+  equatable: ^2.1.0
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:

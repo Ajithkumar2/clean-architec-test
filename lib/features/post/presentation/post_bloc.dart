@@ -14,25 +14,22 @@ class PostLoading extends PostState {}
 class PostErrorState extends PostState {}
 class PostLoaded extends PostState {
   final List<Post> posts;
-  final List<User> users;
-  PostLoaded(this.posts, this.users);
+  PostLoaded(this.posts);
 }
 
 // Bloc
 @injectable
 class PostBloc extends Bloc<dynamic, PostState> {
   final GetPostsUseCase getPostsUseCase;
-  final UserUseCase userUseCase;
 
-  PostBloc(this.getPostsUseCase, this.userUseCase) : super(PostInitial()) {
+  PostBloc(this.getPostsUseCase) : super(PostInitial()) {
     on<dynamic>((event, emit) async {
       emit(PostLoading());
       final posts = await getPostsUseCase.call();
-      final users = await userUseCase.call();
-      users.fold((failure) {
+      posts.fold((failure) {
         emit(PostErrorState());
-      }, (users){
-        emit(PostLoaded(posts, users));
+      }, (postList) {
+        emit(PostLoaded(postList));
       });
     });
   }

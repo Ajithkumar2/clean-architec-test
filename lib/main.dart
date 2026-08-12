@@ -1,4 +1,6 @@
 import 'package:clean_architecture_sample/core/dio_client.dart';
+import 'package:clean_architecture_sample/features/post/presentation/post_widget.dart';
+import 'package:clean_architecture_sample/features/users/presentation/widget/user_widget.dart';
 import 'package:clean_architecture_sample/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,20 +32,8 @@ class MyApp extends StatelessWidget {
                 if (state is PostLoaded) {
                   return TabBarView(
                     children: [
-                      ListView.builder(
-                        itemCount: state.posts.length,
-                        itemBuilder: (context, i) => ListTile(
-                          title: Text(state.posts[i].title),
-                          subtitle: Text(state.posts[i].body),
-                        ),
-                      ),
-                      ListView.builder(
-                        itemCount: state.users.length,
-                        itemBuilder: (context, i) => ListTile(
-                          title: Text(state.users[i].name),
-                          subtitle: Text(state.users[i].email),
-                        ),
-                      ),
+                      PostWidget(),
+                      UserWidget()
                     ],
                   );
                 }
