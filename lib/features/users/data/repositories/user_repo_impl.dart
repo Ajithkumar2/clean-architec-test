@@ -22,7 +22,8 @@ class UserRepoImpl extends UserRepository {
       await locator<UserLocalDatasource>().cacheUsers(users);
       return Right(users);
     } on NetworkFailure {
-      return await locator<UserLocalDatasource>().getUsers();
+       // await locator<UserLocalDatasource>().getUsers();
+      return Left(NetworkFailure());
     } on ServerFailure {
       return Left(ServerFailure());
     } catch (_) {

@@ -1,5 +1,6 @@
+import 'package:clean_architecture_sample/core/failures.dart';
+import 'package:clean_architecture_sample/core/network_exceptions.dart';
 import 'package:clean_architecture_sample/features/post/data/datasource/post_local_datasource.dart';
-import 'package:clean_architecture_sample/features/post/domain/enitites/post_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,17 +22,22 @@ class PostRemoteDatasourceImpl extends PostRemoteDatasource {
   Future<List<PostModel>> getPosts() async {
     try {
       // Rule 2: Attempt API call
-      final response = await locator<DioClient>().dio.get('https://jsonplaceholder.typicode.com/posts');
+      final response = await dio.get('https://jsonplaceholder.typicode.com/posts');
       final List<PostModel> posts = (response.data as List)
           .map((json) => PostModel.fromJson(json))
           .toList();
 
       // Cache data for offline use
-      await locator<PostLocalDataSource>().cachePosts(posts);
+      // await locator<PostLocalDataSource>().cachePosts(posts);
     return posts;
-    } catch (e) {
-    // Rule 2: If network fails, load from SQL
-    return await locator<PostLocalDataSource>().getLastPosts();
+    } on DioException {
+      throw NetworkFailure();
+    } on ServerException {
+      throw ServerFailure();
+    }
+    catch (e) {
+    // return await locator<PostLocalDataSource>().getLastPosts();
+      throw UnknownFailure();
     }
   }
 

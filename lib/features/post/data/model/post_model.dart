@@ -1,7 +1,3 @@
-import 'package:sqflite/sqflite.dart';
-import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
-
 import '../../domain/enitites/post_entity.dart';
 
 // data/post_model.dart

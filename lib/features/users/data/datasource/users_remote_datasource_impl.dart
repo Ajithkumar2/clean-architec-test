@@ -24,11 +24,10 @@ class UsersRemoteDatasourceImpl extends UsersRemoteDatasource {
     try {
       final res = await dio.get('https://jsonplaceholder.typicode.com/users');
         final posts = (res.data as List).map((e) => UserModel.fromJson(e)).toList();
-      await locator<UserLocalDatasource>().cacheUsers(posts);
     return posts;
     } on DioException {
       throw NetworkException();
-    } catch (_) {
+    } catch (exception, stackTrace) {
       throw ServerException();
     }
   }
