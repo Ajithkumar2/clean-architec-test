@@ -43,7 +43,7 @@ platform :android do
     firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID"],
       service_credentials_file: "fastlane/firebase-service-account.json",
-      groups: "CcHelper Testers",
+      groups: "cchelper-testers",
       release_notes: "v#{lane_context[:VERSION_NAME]}+#{lane_context[:BUILD_NUMBER]} - #{short_sha}",
       apk_path: "../build/app/outputs/flutter-apk/app-release.apk"
     )
