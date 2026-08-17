@@ -20,6 +20,7 @@ dependencies:
   dartz: ^0.10.1
   equatable: ^2.1.0
   bloc_test: ^9.1.7
+  firebase_core: ^4.13.0
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,67 @@
+default_platform(:android)
+
+PUBSPEC_PATH = "../../pubspec.yaml"
+
+platform :android do
+
+  desc "Bump the build number in pubspec.yaml (version: 1.2.3+45 -> +46)"
+  private_lane :bump_version do
+    pubspec = File.read(PUBSPEC_PATH)
+
+    current = pubspec.match(/^version:\s*(\d+\.\d+\.\d+)\+(\d+)/)
+    UI.user_error!("Could not find a 'version: x.y.z+build' line in pubspec.yaml") unless current
+
+    version_name = current[1]
+    build_number  = current[2].to_i
+    new_build_number = build_number + 1
+
+    new_pubspec = pubspec.sub(
+      /^version:\s*\d+\.\d+\.\d+\+\d+/,
+      "version: #{`version_name}+#{new_build_number}"
+    )
+    File.write(PUBSPEC_PATH, new_pubspec)
+
+    UI.success("Bumped version to #{version_name}+#{new_build_number}")
+
+    # expose for later steps / commit message
+    lane_context[:VERSION_NAME] = version_name
+    lane_context[:BUILD_NUMBER] = new_build_number
+  end
+
+  desc "Build the release APK (flutter reads version/build number from pubspec.yaml automatically)"
+  private_lane :build_apk do
+    Dir.chdir("../..") do
+      sh("flutter", "pub", "get")
+      sh("dart", "run", "build_runner", "build", "--delete-conflicting-outputs")
+      sh("flutter", "build", "apk", "--release")
+    end
+  end
+
+  desc "Full pipeline: bump version, build, upload to Firebase, notify Slack"
+  lane :distribute do
+    bump_version
+    build_apk
+
+    firebase_app_distribution(
+      app: ENV["FIREBASE_APP_ID"],
+      groups: "ccHelper Testers",
+      release_notes: "v#{lane_context[:VERSION_NAME]}+#{lane_context[:BUILD_NUMBER]} - #{ENV["GITHUB_SHA"]&.slice(0, 7)}",
+      apk_path: "../build/app/outputs/flutter-apk/app-release.apk"
+    )
+
+#     slack(
+#       message: "✅ New build *v#{lane_context[:VERSION_NAME]}+#{lane_context[:BUILD_NUMBER]}* uploaded to Firebase App Distribution",
+#       slack_url: ENV["SLACK_WEBHOOK_URL"],
+#       default_payloads: [:git_branch, :last_git_commit],
+#       success: true
+#     )
+  end
+
+#   error do |lane, exception|
+#     slack(
+#       message: "❌ Build/distribution failed on lane `#{lane}`: #{exception.message}",
+#       slack_url: ENV["SLACK_WEBHOOK_URL"],
+#       success: false
+#     )
+#   end
+end
