@@ -1,0 +1,2 @@
+json_key_file("firebase-service-account.json")   # written from a secret at CI-time, see workflow
+package_name(ENV["ANDROID_PACKAGE_NAME"] || "com.example.clean_architecture_sample")  # match android/app/build.gradle applicationId

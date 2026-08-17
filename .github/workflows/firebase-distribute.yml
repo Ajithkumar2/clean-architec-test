@@ -1,0 +1,61 @@
+name: Build & Distribute Android (Fastlane)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+# so Fastlane can commit the bumped pubspec.yaml back to the repo
+permissions:
+  contents: write
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.9'   # match your project's Flutter version
+          channel: 'stable'
+
+      - name: Set up Ruby (for Fastlane)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: android
+
+      - name: Write Firebase service account file
+        working-directory: android/fastlane
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-service-account.json
+
+      - name: Run Fastlane distribute lane
+        working-directory: android
+        env:
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          ANDROID_PACKAGE_NAME: com.example.clean_architecture_sample
+          GITHUB_SHA: ${{ github.sha }}
+        run: bundle exec fastlane distribute
+
+      - name: Commit bumped pubspec.yaml back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pubspec.yaml
+          git diff --staged --quiet || git commit -m "ci: bump build number [skip ci]"
+          git push
