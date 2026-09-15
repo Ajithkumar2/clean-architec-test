@@ -1,5 +1,5 @@
 
-import 'package:clean_architecture_sample/features/post/data/datasource/post_remote_datasource.dart';
+import 'package:cchelper/features/post/data/datasource/post_remote_datasource.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

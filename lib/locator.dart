@@ -1,4 +1,4 @@
-import 'package:clean_architecture_sample/locator.config.dart';
+import 'package:cchelper/locator.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,6 +14,14 @@ Future<void> configureDependencies() async {
     onCreate: (db, version) async {
       await db.execute("CREATE TABLE posts(id INTEGER PRIMARY KEY, title TEXT, body TEXT)");
       await db.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, email TEXT)");
+      await db.execute(
+        "CREATE TABLE IF NOT EXISTS meals(id TEXT PRIMARY KEY, date TEXT, meal_type TEXT, name TEXT, reference_url TEXT, notes TEXT)",
+      );
+    },
+    onOpen: (db) async {
+      await db.execute(
+        "CREATE TABLE IF NOT EXISTS meals(id TEXT PRIMARY KEY, date TEXT, meal_type TEXT, name TEXT, reference_url TEXT, notes TEXT)",
+      );
     },
     version: 1,
   );

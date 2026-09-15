@@ -1,4 +1,4 @@
-import 'package:clean_architecture_sample/features/users/domain/usecases/user_use_case.dart';
+import 'package:cchelper/features/users/domain/usecases/user_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

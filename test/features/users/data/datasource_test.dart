@@ -1,6 +1,6 @@
 
-import 'package:clean_architecture_sample/core/network_exceptions.dart';
-import 'package:clean_architecture_sample/features/users/data/datasource/users_remote_datasource_impl.dart';
+import 'package:cchelper/core/network_exceptions.dart';
+import 'package:cchelper/features/users/data/datasource/users_remote_datasource_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

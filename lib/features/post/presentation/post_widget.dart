@@ -1,5 +1,5 @@
-import 'package:clean_architecture_sample/features/post/presentation/post_bloc.dart';
-import 'package:clean_architecture_sample/locator.dart';
+import 'package:cchelper/features/post/presentation/post_bloc.dart';
+import 'package:cchelper/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

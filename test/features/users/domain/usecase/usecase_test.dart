@@ -1,6 +1,6 @@
-import 'package:clean_architecture_sample/features/users/domain/entities/user_entity.dart';
-import 'package:clean_architecture_sample/features/users/domain/repository/user_repository.dart';
-import 'package:clean_architecture_sample/features/users/domain/usecases/user_use_case.dart';
+import 'package:cchelper/features/users/domain/entities/user_entity.dart';
+import 'package:cchelper/features/users/domain/repository/user_repository.dart';
+import 'package:cchelper/features/users/domain/usecases/user_use_case.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
