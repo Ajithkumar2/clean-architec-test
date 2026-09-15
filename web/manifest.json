@@ -1,11 +1,11 @@
 {
-    "name": "clean_architecture_sample",
-    "short_name": "clean_architecture_sample",
+    "name": "CcHelper",
+    "short_name": "CcHelper",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "CcHelper - Clean Architecture Meal Planner and Helper App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

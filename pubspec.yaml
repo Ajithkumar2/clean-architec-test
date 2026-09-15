@@ -1,5 +1,5 @@
-name: clean_architecture_sample
-description: "A new Flutter project."
+name: cchelper
+description: "CcHelper - Clean Architecture Meal Planner and Helper App"
 publish_to: 'none'
 version: 1.0.0+2
 
@@ -21,6 +21,7 @@ dependencies:
   equatable: ^2.1.0
   bloc_test: ^9.1.7
   firebase_core: ^4.13.0
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,3 @@
-# clean_architecture_sample
+# CcHelper
 
-A new Flutter project.
+CcHelper - Clean Architecture Meal Planner and Helper App built with Flutter & BLoC.

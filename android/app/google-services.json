@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:577110800760:android:569399451e648ab493f08d",
         "android_client_info": {
-          "package_name": "com.example.clean_architecture_sample"
+          "package_name": "com.mealplanner.cchelper"
         }
       },
       "oauth_client": [

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.clean_architecture_sample"
+    namespace = "com.mealplanner.cchelper"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.clean_architecture_sample"
+        applicationId = "com.mealplanner.cchelper"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
