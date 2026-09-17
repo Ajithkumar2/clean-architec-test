@@ -10,13 +10,13 @@
             "type": "dart"
         },
         {
-            "name": "clean_architecture_sample (profile mode)",
+            "name": "CcHelper (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "clean_architecture_sample (release mode)",
+            "name": "CcHelper (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

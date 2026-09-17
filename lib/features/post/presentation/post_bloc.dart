@@ -1,4 +1,4 @@
-import 'package:clean_architecture_sample/locator.dart';
+import 'package:cchelper/locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

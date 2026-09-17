@@ -1,8 +1,8 @@
-import 'package:clean_architecture_sample/core/failures.dart';
-import 'package:clean_architecture_sample/features/users/data/datasource/users_remote_datasource_impl.dart';
-import 'package:clean_architecture_sample/features/users/data/model/user_model.dart';
-import 'package:clean_architecture_sample/features/users/data/repositories/user_repo_impl.dart';
-import 'package:clean_architecture_sample/features/users/domain/repository/user_repository.dart';
+import 'package:cchelper/core/failures.dart';
+import 'package:cchelper/features/users/data/datasource/users_remote_datasource_impl.dart';
+import 'package:cchelper/features/users/data/model/user_model.dart';
+import 'package:cchelper/features/users/data/repositories/user_repo_impl.dart';
+import 'package:cchelper/features/users/domain/repository/user_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

@@ -1,9 +1,9 @@
-import 'package:clean_architecture_sample/core/dio_client.dart';
-import 'package:clean_architecture_sample/core/failures.dart';
-import 'package:clean_architecture_sample/core/network_exceptions.dart';
-import 'package:clean_architecture_sample/features/post/data/datasource/post_remote_datasource.dart';
-import 'package:clean_architecture_sample/features/post/data/model/post_model.dart';
-import 'package:clean_architecture_sample/locator.dart';
+import 'package:cchelper/core/dio_client.dart';
+import 'package:cchelper/core/failures.dart';
+import 'package:cchelper/core/network_exceptions.dart';
+import 'package:cchelper/features/post/data/datasource/post_remote_datasource.dart';
+import 'package:cchelper/features/post/data/model/post_model.dart';
+import 'package:cchelper/locator.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';

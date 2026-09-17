@@ -1,7 +1,7 @@
-import 'package:clean_architecture_sample/core/failures.dart';
-import 'package:clean_architecture_sample/features/users/data/datasource/user_local_datasource.dart';
-import 'package:clean_architecture_sample/features/users/data/datasource/users_remote_datasource_impl.dart';
-import 'package:clean_architecture_sample/features/users/data/model/user_model.dart';
+import 'package:cchelper/core/failures.dart';
+import 'package:cchelper/features/users/data/datasource/user_local_datasource.dart';
+import 'package:cchelper/features/users/data/datasource/users_remote_datasource_impl.dart';
+import 'package:cchelper/features/users/data/model/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
